@@ -1,31 +1,34 @@
+import { Alert, ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { APP_NAME } from 'constants/env';
+import { getCookie } from 'cookies-next';
+import useToggleColorScheme from 'hooks/useToggleColorScheme';
+import Layout from 'layout';
 import { GetServerSidePropsContext } from 'next';
-import { useState } from 'react';
 import { AppProps } from 'next/app';
-import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import theme from 'theme';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
-
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
-    setColorScheme(nextColorScheme);
-    setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
-  };
+  const { colorScheme, toggleColorScheme } = useToggleColorScheme(props.colorScheme);
 
   return (
     <>
       <Head>
         <title>World&apos;s Nations Info</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
-
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-          <Component {...pageProps} />
+        <MantineProvider
+          theme={{
+            colorScheme,
+            ...theme,
+          }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </MantineProvider>
       </ColorSchemeProvider>
     </>
@@ -33,5 +36,5 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 }
 
 App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+  colorScheme: getCookie(APP_NAME, ctx) || 'light',
 });
