@@ -1,4 +1,4 @@
-import { Alert, ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { APP_NAME } from 'constants/env';
 import { getCookie } from 'cookies-next';
 import useToggleColorScheme from 'hooks/useToggleColorScheme';
@@ -7,6 +7,7 @@ import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import theme from 'theme';
+import GlobalStyles from 'theme/globalStyles';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -26,6 +27,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           withGlobalStyles
           withNormalizeCSS
         >
+          <GlobalStyles />
           <Layout>
             <Component {...pageProps} />
           </Layout>
