@@ -20,6 +20,7 @@ const SearchInput = () => {
         input: 'element-bg',
         icon: 'element-color',
       }}
+      style={{ flexGrow: 0.2 }}
       icon={<MagnifyingGlassIcon width={20} height={20} />}
       radius="md"
       size="xl"

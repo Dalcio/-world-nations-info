@@ -25,6 +25,7 @@
       "layout": ["src/layout"],
       "theme": ["src/theme"],
       "theme/*": ["src/theme/*"],
+      "store": ["src/store"],
       "store/*": ["src/store/*"]
     }
   },

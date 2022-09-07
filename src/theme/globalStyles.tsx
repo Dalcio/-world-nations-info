@@ -6,6 +6,7 @@ const GlobalStyles = () => (
     styles={({ colors, colorScheme, fn, white }: MantineTheme) => ({
       '*, *::before, *::after': {
         boxSizing: 'border-box',
+        margin: 0,
       },
 
       body: {
