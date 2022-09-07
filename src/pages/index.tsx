@@ -1,7 +1,12 @@
+import { Stack } from '@mantine/core';
+import { Countries, Filter, SearchInput } from 'components/home';
+
 const HomePage = () => (
-  <>
-    <div>World&apos;s Nations Info</div>
-  </>
+  <Stack p="md">
+    <SearchInput />
+    <Filter />
+    <Countries />
+  </Stack>
 );
 
 export default HomePage;

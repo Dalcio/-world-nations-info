@@ -17,6 +17,12 @@ const GlobalStyles = () => (
       '.element-bg': {
         backgroundColor: (colorScheme === 'dark' && colors.darkBlue[0]) || white,
       },
+      '.element-color, .element-bg': {
+        color: colorScheme === 'dark' ? white : colors.darkBlue[2],
+        '&::placeholder': {
+          color: colorScheme === 'dark' ? white : colors.darkBlue[2],
+        },
+      },
     })}
   />
 );
