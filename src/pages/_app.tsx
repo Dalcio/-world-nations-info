@@ -1,7 +1,7 @@
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { APP_NAME } from 'constants/env';
 import { getCookie } from 'cookies-next';
-import useToggleColorScheme from 'hooks/useToggleColorScheme';
+import { useDocumentIsReady, useToggleColorScheme } from 'hooks';
 import Layout from 'layout';
 import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
@@ -12,6 +12,9 @@ import GlobalStyles from 'theme/globalStyles';
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const { colorScheme, toggleColorScheme } = useToggleColorScheme(props.colorScheme);
+  const isReady = useDocumentIsReady();
+
+  if (!isReady) return null;
 
   return (
     <>
@@ -28,9 +31,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           withNormalizeCSS
         >
           <GlobalStyles />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Layout>{isReady ? <Component {...pageProps} /> : <h1>Document is Loading</h1>}</Layout>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

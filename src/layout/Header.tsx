@@ -9,7 +9,7 @@ const useHeaderStyles = createStyles(({ colors, spacing }) => ({
     boxShadow: `0 1px 2px 0px ${colors.darkBlue[0]}`,
   },
   container: {
-    width: 'min(100%, 1200px)',
+    width: 'min(100%, 1440px)',
     padding: `0 ${spacing.md + spacing.xl}px`,
   },
 }));

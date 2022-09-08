@@ -3,6 +3,9 @@ import { StateCreator } from 'zustand';
 import { TStoreActions, TStoreState } from './store.types';
 
 const storeActions: StateCreator<TStoreState, any, any, TStoreActions> = (set, get) => ({
+  hydrateStore(countries) {
+    set({ countries });
+  },
   async searchCountry(name) {
     let res;
 

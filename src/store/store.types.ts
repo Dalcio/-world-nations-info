@@ -8,6 +8,7 @@ export type TStoreState = {
 
 export type TStoreActions = {
   searchCountry: (name: string) => void;
+  hydrateStore: (countries: TCountry[]) => void;
 };
 
 export type TStore = TStoreState & TStoreActions;

@@ -16,7 +16,7 @@ const useLayoutStyles = createStyles(() => ({
     justifyItems: 'center',
   },
   main: {
-    width: 'min(100%, 1200px)',
+    width: 'min(100%, 1440px)',
   },
 }));
 
