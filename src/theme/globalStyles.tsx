@@ -11,6 +11,9 @@ const GlobalStyles = () => (
 
       body: {
         ...fn.fontStyles(),
+      },
+
+      'body, .bg': {
         backgroundColor: colorScheme === 'dark' ? colors.darkBlue[1] : white,
         color: colorScheme === 'dark' ? white : colors.darkBlue[2],
       },

@@ -7,6 +7,9 @@ const useHeaderStyles = createStyles(({ colors, spacing }) => ({
   wrapper: {
     width: '100%',
     boxShadow: `0 1px 2px 0px ${colors.darkBlue[0]}`,
+    position: 'fixed',
+    top: 0,
+    zIndex: 1,
   },
   container: {
     width: 'min(100%, 1400px)',

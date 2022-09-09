@@ -18,6 +18,7 @@ const useLayoutStyles = createStyles(({ spacing }) => ({
   main: {
     width: 'min(100%, 1400px)',
     padding: `${spacing.md + spacing.xl}px`,
+    marginTop: '82px',
   },
 }));
 
