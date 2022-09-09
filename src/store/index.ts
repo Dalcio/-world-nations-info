@@ -4,15 +4,20 @@ import { APP_NAME } from 'constants/env';
 import { useEffect } from 'react';
 import { TCountry } from 'rest-countries';
 import storeActions from './store.actions';
-import { TStoreState, TStoreActions, TStore } from './store.types';
+import { TStoreActions, TStore } from './store.types';
 
-const storeState: TStoreState = {
+const storeInit: TStore = {
+  currentRegion: undefined,
+  currentSearch: undefined,
   countries: [],
   filteredCountries: [],
   selectedCountry: undefined,
+  filterByRegion: () => [],
+  hydrateStore: () => undefined,
+  searchCountry: () => [],
 };
 
-let store = combine<TStoreState, TStoreActions, any, any>(storeState, storeActions);
+let store = combine<TStore, TStoreActions, any, any>(storeInit, storeActions);
 
 store = persist(store, {
   name: APP_NAME,
@@ -25,9 +30,10 @@ const useStore = create<TStore>(store);
 
 export const useHydrateStore = (countries?: TCountry[]) => {
   const hydrateStore = useStore((s) => s.hydrateStore);
+  const c = useStore((s) => s.countries);
 
   useEffect(() => {
-    if (countries && countries.length > 0) {
+    if (c.length === 0 && countries && countries.length > 0) {
       hydrateStore(countries);
     }
   }, []);

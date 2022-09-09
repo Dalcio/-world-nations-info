@@ -24,18 +24,7 @@ const CountryCard = ({ capital, flag, name, population, region }: CountryCardPro
   <Link href={`/country/${name}`} passHref>
     <Card radius="md" shadow="sm" p="xl" component="a" className="element-bg">
       <Card.Section>
-        <Image
-          src={flag}
-          alt={`flag of ${name}`}
-          height="170px"
-          styles={({ fn }) => ({
-            image: {
-              [fn.smallerThan('md')]: {
-                height: '220px!important',
-              },
-            },
-          })}
-        />
+        <Image src={flag} alt={`flag of ${name}`} height="170px" />
       </Card.Section>
 
       <Stack m="md" mt="xl" spacing="sm">

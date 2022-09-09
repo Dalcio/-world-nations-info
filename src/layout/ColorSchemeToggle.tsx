@@ -10,6 +10,13 @@ const ColorSchemeToggle = () => {
       size="lg"
       variant="subtle"
       color="dark"
+      sx={() => ({
+        padding: 0,
+        '&:hover': {
+          backgroundColor: 'transparent',
+          opacity: 0.6,
+        },
+      })}
       leftIcon={
         colorScheme === 'dark' ? (
           <SunIcon width={20} height={20} />

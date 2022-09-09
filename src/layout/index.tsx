@@ -6,7 +6,7 @@ type TLayout = {
   children: JSX.Element[] | JSX.Element;
 };
 
-const useLayoutStyles = createStyles(() => ({
+const useLayoutStyles = createStyles(({ spacing }) => ({
   appContainer: {
     width: '100%',
     minHeight: '100vh',
@@ -16,7 +16,8 @@ const useLayoutStyles = createStyles(() => ({
     justifyItems: 'center',
   },
   main: {
-    width: 'min(100%, 1440px)',
+    width: 'min(100%, 1400px)',
+    padding: `${spacing.md + spacing.xl}px`,
   },
 }));
 
@@ -26,9 +27,7 @@ const Layout = ({ children }: TLayout) => {
   return (
     <div className={classes.appContainer}>
       <Header />
-      <Stack className={classes.main} p="xl">
-        {children}
-      </Stack>
+      <Stack className={classes.main}>{children}</Stack>
     </div>
   );
 };

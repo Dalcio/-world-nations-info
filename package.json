@@ -19,9 +19,11 @@
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@mantine/core": "4.2.2",
-    "@mantine/hooks": "4.2.2",
-    "@mantine/next": "4.2.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^5.2.6",
+    "@mantine/hooks": "^5.2.6",
+    "@mantine/next": "^5.2.6",
     "@modulz/radix-icons": "^4.0.0",
     "@next/bundle-analyzer": "^12.1.4",
     "@tanstack/react-query": "^4.2.3",

@@ -1,25 +1,57 @@
-import { API_ENDPOINT } from 'constants/env';
+import { TCountry } from 'rest-countries';
 import { StateCreator } from 'zustand';
-import { TStoreActions, TStoreState } from './store.types';
+import { TStore, TStoreActions } from './store.types';
 
-const storeActions: StateCreator<TStoreState, any, any, TStoreActions> = (set, get) => ({
-  hydrateStore(countries) {
+const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set, get) => ({
+  hydrateStore: (countries) => {
     set({ countries });
   },
-  async searchCountry(name) {
-    let res;
+  searchCountry: (name, withReturn = false) => {
+    const { countries, currentRegion, filterByRegion } = get();
+    let searchedCountries: TCountry[] = [];
 
-    if (name.length > 0) {
-      res = await fetch(`${API_ENDPOINT}name/${name}`);
-    } else {
-      res = await fetch(`${API_ENDPOINT}all`);
+    if (name) {
+      if (currentRegion && !withReturn) {
+        searchedCountries = filterByRegion(currentRegion, true);
+
+        searchedCountries = searchedCountries.filter(({ name: { common } }) =>
+          common.toLowerCase().includes(name.toLowerCase())
+        );
+      } else {
+        searchedCountries = [...countries].filter(({ name: { common } }) =>
+          common.toLowerCase().includes(name.toLowerCase())
+        );
+      }
+    } else if (currentRegion) {
+      searchedCountries = filterByRegion(currentRegion, true);
     }
 
-    const countries = await res.json();
+    set({ filteredCountries: searchedCountries, currentSearch: name });
 
-    if (countries) {
-      set({ countries });
+    return searchedCountries;
+  },
+  filterByRegion: (name, withReturn = false) => {
+    const { countries, currentSearch, searchCountry } = get();
+    let filteredCountries: TCountry[] = [];
+
+    if (name) {
+      if (currentSearch !== undefined && !withReturn) {
+        filteredCountries = searchCountry(currentSearch, true);
+        filteredCountries = filteredCountries.filter(
+          ({ region }) => region.toLowerCase() === name.toLowerCase()
+        );
+      } else {
+        filteredCountries = [...countries].filter(
+          ({ region }) => region.toLowerCase() === name.toLowerCase()
+        );
+      }
+    } else if (currentSearch) {
+      filteredCountries = searchCountry(currentSearch, true);
     }
+
+    set({ filteredCountries, currentRegion: name });
+
+    return filteredCountries;
   },
 });
 
