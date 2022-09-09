@@ -33,6 +33,7 @@ const CountryCard = ({ capital, flag, name, population, region }: CountryCardPro
         component="a"
         className="element-bg"
         onClick={() => getCountry(name)}
+        withBorder
       >
         <Card.Section>
           <Image src={flag} alt={`flag of ${name}`} height="170px" />
