@@ -10,11 +10,13 @@ const storeInit: TStore = {
   currentRegion: undefined,
   currentSearch: undefined,
   countries: [],
+  country: undefined,
   filteredCountries: [],
   selectedCountry: undefined,
   filterByRegion: () => [],
   hydrateStore: () => undefined,
   searchCountry: () => [],
+  getCountry: () => undefined,
 };
 
 let store = combine<TStore, TStoreActions, any, any>(storeInit, storeActions);

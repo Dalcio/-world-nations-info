@@ -1,4 +1,5 @@
 import { Box, SimpleGrid, Stack } from '@mantine/core';
+import getAllCountries from 'api/getAllCountries';
 import { Countries, FilterByRegion, SearchInput } from 'components/home';
 import { API_ENDPOINT } from 'constants/env';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
@@ -7,14 +8,7 @@ import { useHydrateStore } from 'store/index';
 import { Row } from 'theme/restyled';
 
 export const getStaticProps: GetStaticProps = async () => {
-  let countries: TCountry[] = [];
-
-  try {
-    const res = await fetch(`${API_ENDPOINT}all`);
-    countries = await res.json();
-  } catch (error) {
-    countries = [];
-  }
+  const countries: TCountry[] = await getAllCountries();
 
   return {
     props: {

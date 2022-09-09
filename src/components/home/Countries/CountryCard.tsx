@@ -1,5 +1,6 @@
 import { Card, Image, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
+import useStore from 'store';
 
 type CountryCardProps = {
   flag: string;
@@ -20,21 +21,32 @@ const CardInfo = ({ label, value }: CardInfoProps) => (
   </Text>
 );
 
-const CountryCard = ({ capital, flag, name, population, region }: CountryCardProps) => (
-  <Link href={`/country/${name}`} passHref>
-    <Card radius="md" shadow="sm" p="xl" component="a" className="element-bg">
-      <Card.Section>
-        <Image src={flag} alt={`flag of ${name}`} height="170px" />
-      </Card.Section>
+const CountryCard = ({ capital, flag, name, population, region }: CountryCardProps) => {
+  const getCountry = useStore((s) => s.getCountry);
 
-      <Stack m="md" mt="xl" spacing="sm">
-        <h2>{name}</h2>
-        <CardInfo label="Population" value={population} />
-        <CardInfo label="Region" value={region} />
-        <CardInfo label="Capital" value={Array.isArray(capital) ? capital.join(',') : capital} />
-      </Stack>
-    </Card>
-  </Link>
-);
+  return (
+    <Link href={`/country/${name}`} passHref>
+      <Card
+        radius="md"
+        shadow="sm"
+        p="xl"
+        component="a"
+        className="element-bg"
+        onClick={() => getCountry(name)}
+      >
+        <Card.Section>
+          <Image src={flag} alt={`flag of ${name}`} height="170px" />
+        </Card.Section>
+
+        <Stack m="md" mt="xl" spacing="sm">
+          <h2>{name}</h2>
+          <CardInfo label="Population" value={population} />
+          <CardInfo label="Region" value={region} />
+          <CardInfo label="Capital" value={Array.isArray(capital) ? capital.join(',') : capital} />
+        </Stack>
+      </Card>
+    </Link>
+  );
+};
 
 export default CountryCard;

@@ -1,15 +1,26 @@
 declare module 'rest-countries' {
-  type NativeName = {
+  export type NativeName = {
     [key: string]: {
       official: string;
       common: string;
     };
   };
 
-  type Name = {
+  export type Name = {
     common: string;
     official: string;
     nativeName: NativeName;
+  };
+
+  export type Currencies = {
+    [key: string]: {
+      name: string;
+      symbol: string;
+    };
+  };
+
+  export type Languages = {
+    [key: string]: string;
   };
 
   export type TCountry = {
@@ -22,12 +33,7 @@ declare module 'rest-countries' {
     independent: boolean;
     status: string;
     unMember: boolean;
-    currencies: {
-      [key: string]: {
-        name: string;
-        symbol: string;
-      };
-    };
+    currencies: Currencies;
     idd: {
       root: string;
       suffixes: string[];
@@ -36,9 +42,7 @@ declare module 'rest-countries' {
     altSpellings: string[];
     region: string;
     subregion: string;
-    languages: {
-      [key: string]: string;
-    };
+    languages: Languages;
     translations: {
       [key: string]: {
         official: string;

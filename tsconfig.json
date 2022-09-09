@@ -16,6 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "api/*": ["src/api/*"],
       "components": ["src/components"],
       "components/*": ["src/components/*"],
       "constants": ["src/constants"],

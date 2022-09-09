@@ -1,3 +1,4 @@
+import getCountryData from 'api/getCountryData';
 import { TCountry } from 'rest-countries';
 import { StateCreator } from 'zustand';
 import { TStore, TStoreActions } from './store.types';
@@ -52,6 +53,29 @@ const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set, get) =
     set({ filteredCountries, currentRegion: name });
 
     return filteredCountries;
+  },
+  getCountry: async (name) => {
+    const { currentSearch, currentRegion, filterByRegion } = get();
+
+    if (currentSearch) {
+      set({
+        currentSearch: undefined,
+        filteredCountries: currentRegion ? filterByRegion(currentRegion, true) : [],
+      });
+    }
+
+    try {
+      const data = await getCountryData(name);
+      set({
+        country: { ...data },
+      });
+    } catch (error) {
+      console.log(error);
+
+      set({
+        country: undefined,
+      });
+    }
   },
 });
 
