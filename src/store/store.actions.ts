@@ -58,10 +58,8 @@ const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set, get) =
     const { currentSearch, currentRegion, filterByRegion } = get();
 
     if (currentSearch) {
-      set({
-        currentSearch: undefined,
-        filteredCountries: currentRegion ? filterByRegion(currentRegion, true) : [],
-      });
+      set({ currentSearch: undefined });
+      set({ filteredCountries: currentRegion ? filterByRegion(currentRegion, true) : [] });
     }
 
     try {
@@ -70,8 +68,6 @@ const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set, get) =
         country: { ...data },
       });
     } catch (error) {
-      console.log(error);
-
       set({
         country: undefined,
       });

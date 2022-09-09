@@ -1,7 +1,6 @@
 import { Box, SimpleGrid, Stack } from '@mantine/core';
 import getAllCountries from 'api/getAllCountries';
 import { Countries, FilterByRegion, SearchInput } from 'components/home';
-import { API_ENDPOINT } from 'constants/env';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { TCountry } from 'rest-countries';
 import { useHydrateStore } from 'store/index';
