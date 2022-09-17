@@ -33,8 +33,8 @@ Users should be able to:
 
 ![](./screenshot.jpg)
 
-| Desktop                                                           | Mobile                                                          |
-| ----------------------------------------------------------------- | --------------------------------------------------------------- |
+| Desktop                                                         | Mobile                                                        |
+| --------------------------------------------------------------- | ------------------------------------------------------------- |
 | ![Desktop Preview](./screenshots/desktop-preview.png)             | ![Mobile Preview](./screenshots/mobile-preview.png)             |
 | ![Desktop Light](./screenshots/desktop-light-preview.png)         | ![Mobile Light](./screenshots/mobile-light-preview.png)         |
 | ![Desktop Country](./screenshots/country-desktop.png)             | ![Mobile Country](./screenshots/mobile-country.png)             |
@@ -61,5 +61,5 @@ Users should be able to:
 ## Author
 
 - Website - [Dálcio Garcia](https://dalciogarcia.vercel.app)
-- Linkedin - [dalcio](https://linkedin.com/in/dalcio)
+- Linkedin - [dalcio-garcia](https://linkedin.com/in/dalcio-garcia)
 - Github - [@dalcio](https://github.com/dalcio)
